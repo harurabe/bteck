@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>Assignment 1-3</title>
+</head>
+<body>
+	<script>
+
+	// ------------------------ ここから関数定義 ------------------------------------
+	//タスク一覧を表示する関数
+	function display() {
+		console.log("==========================");
+		console.log("現在持っているタスク一覧");
+		console.log("==========================");
+		for (var key in mytasks) {
+			console.log(mytasks[key]);
+		}
+	}
+
+	//タスク操作の命令を処理する関数
+	function taskmanager(user_input_order, user_input_task){
+
+		if (user_input_order == "追加") {
+				mytasks.push(user_input_task);
+		}
+		else if (user_input_order == "削除") {
+			for (var key in mytasks) {
+					if (mytasks[key] == user_input_task){
+						mytasks.splice(key, 1);
+					}
+				}
+		}
+
+		display();
+	}	
+
+
+	// ------------------------ ここから初期変数等の定義 ------------------------------------
+	let myorders = ["確認", "追加", "削除", "終了"]; 
+	let mytasks = ["掃除", "買い物", "散歩"];
+
+
+	// ------------------------ ここから処理 ------------------------------------
+	display()
+
+	while(true) {
+		var user_input_order = prompt("「確認、追加、削除、終了」のいずれかを入力してください。")
+	
+		if (user_input_order === "確認") {
+			display();
+		}
+		else if (user_input_order === "終了") {
+			break;
+		}
+		else if (user_input_order === "追加" || user_input_order === "削除") {
+			var user_input_task = prompt("タスクを入力してください")	
+			taskmanager(user_input_order, user_input_task);
+		}
+		else {
+			alert("指示が分かりません。選択肢の中からいずれかを入力してください。");
+		}
+	}
+	
+	</script>
+</body>
+</html>
