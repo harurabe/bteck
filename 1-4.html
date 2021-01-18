@@ -13,7 +13,7 @@
 		console.log("==========================");
 		console.log("現在持っているタスク一覧");
 		console.log("==========================");
-		myTasks.forEach(function(value, index) {
+		myTasks.forEach((value, index) => {
 			console.log(`${index}：[内容] ${value.task}、[ジャンル] ${value.category}`);
 		});
 	}
@@ -25,7 +25,7 @@
 	}
 
 	function deleteTask (inputTask, inputCategory) {
-		myTasks.forEach (function(value, index){
+		myTasks.forEach ((value, index) => {
 			if (value.task === inputTask && value.category === inputCategory) {
 				delete myTasks[index];
 			}
