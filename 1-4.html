@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>Assignment 1-4</title>
+</head>
+<body>
+	<script>
+
+	// ------------------------ ここから関数定義 ------------------------------------
+	// タスク一覧を表示する関数
+	function display(){
+		console.log("==========================");
+		console.log("現在持っているタスク一覧");
+		console.log("==========================");
+		myTasks.forEach((value, index) => {
+			console.log(`${index}：[内容] ${value.task}、[ジャンル] ${value.category}`);
+		});
+	}
+
+	//タスクの追加または削除処理をする関数
+	function addTask(inputTask, inputCategory) {
+		myTasks.push({task:inputTask, category:inputCategory});
+		display();
+	}
+
+	function deleteTask (inputTask, inputCategory) {
+		myTasks.forEach ((value, index) => {
+			if (value.task === inputTask && value.category === inputCategory) {
+				delete myTasks[index];
+			}
+		});
+		display();
+	}
+
+	// ------------------------ ここから初期変数等の定義 ------------------------------------
+	//初期タスクリスト
+	const myTasks = [
+		{task:"机を片付ける", category:"掃除"},
+		{task:"牛乳を買う", category:"買い物"}, 
+		{task:"散歩する", category:"運動"}
+	]
+	
+	// ------------------------ ここから処理 ------------------------------------
+
+	//初期タスク一覧を表示する
+	display();
+
+	while(true) {
+		let inputOrder = prompt("「確認、追加、削除、終了」のいずれかを入力してください。")
+		let inputTask, inputCategory;
+
+		if (inputOrder === "確認") {
+			display();
+		}
+		else if (inputOrder === "終了") {
+			break;
+		}
+		else if (inputOrder === "追加") {
+			inputTask = prompt("タスクを入力してください");
+			inputCategory = prompt("ジャンルを入力してください");
+			addTask(inputTask, inputCategory);
+		}
+		else if(inputOrder === "削除") {
+			inputTask = prompt("タスクを入力してください");
+			inputCategory = prompt("ジャンルを入力してください");
+			deleteTask(inputTask, inputCategory);
+		}
+		else {
+			alert("指示が分かりません。選択肢の中からいずれかを入力してください。");
+		}
+	}
+
+	</script>
+</body>
+</html>

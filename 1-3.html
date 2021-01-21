@@ -13,56 +13,55 @@
 		console.log("==========================");
 		console.log("現在持っているタスク一覧");
 		console.log("==========================");
-		for (let key in mytasks) {
-			console.log(mytasks[key]);
-		}
+		myTasks.forEach(function(value, index) {
+			console.log(index + ":" + value);
+		});
 	}
 
 	//タスク操作の命令を処理する関数
-	function taskmanager(user_input_order, user_input_task){
+	function taskmanager(inputOrder, inputTask){
 
-		if (user_input_order == "追加") {
-				mytasks.push(user_input_task);
-				alert("新しいタスクを追加しました。");
+		if (inputOrder === "追加") {
+			myTasks.push(inputTask);
+			alert("新しいタスクを追加しました。");
 		}
-		else if (user_input_order == "削除") {
-			for (let key in mytasks) {
-					if (mytasks[key] == user_input_task){
-						mytasks.splice(key, 1);
-					}
+		else if (inputOrder === "削除") {
+			myTasks.forEach (function(value, index){
+				if (value === inputTask){
+					myTasks.splice(index,1);
 				}
+			});
 		}
-
 		display();
 	}	
 
 
 	// ------------------------ ここから初期変数等の定義 ------------------------------------
-	let myorders = ["確認", "追加", "削除", "終了"]; 
-	let mytasks = ["掃除", "買い物", "散歩"];
+	let myOrders = ["確認", "追加", "削除", "終了"]; 
+	let myTasks = ["掃除", "買い物", "散歩"];
 
 
 	// ------------------------ ここから処理 ------------------------------------
 	display()
 
 	// ----- 最初のタスク追加処理 -----
-	let user_input_order = "追加";
-	let user_input_task = prompt("タスクを入力してください");
-	taskmanager(user_input_order, user_input_task);
+	let inputOrder = "追加";
+	let inputTask = prompt("タスクを入力してください");
+	taskmanager(inputOrder, inputTask);
 
 	//----- その後の選択肢のループ -----
 	while(true) {
-		user_input_order = prompt("「確認、追加、削除、終了」のいずれかを入力してください。")
+		inputOrder = prompt("「確認、追加、削除、終了」のいずれかを入力してください。")
 	
-		if (user_input_order === "確認") {
+		if (inputOrder === "確認") {
 			display();
 		}
-		else if (user_input_order === "終了") {
+		else if (inputOrder === "終了") {
 			break;
 		}
-		else if (user_input_order === "追加" || user_input_order === "削除") {
-			user_input_task = prompt("タスクを入力してください")	
-			taskmanager(user_input_order, user_input_task);
+		else if (inputOrder === "追加" || inputOrder === "削除") {
+			inputTask = prompt("タスクを入力してください")	
+			taskmanager(inputOrder, inputTask);
 		}
 		else {
 			alert("指示が分かりません。選択肢の中からいずれかを入力してください。");
